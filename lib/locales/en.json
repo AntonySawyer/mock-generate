@@ -1,6 +1,10 @@
 {
   "address": {
-    "country": ["USA", "United States", "United States of America"],
+    "country": [
+      "USA",
+      "United States",
+      "United States of America"
+    ],
     "city": [
       "Alabama",
       "Alaska",
@@ -3613,7 +3617,14 @@
       ]
     }
   },
-  "phonenumber": {
-    "pattern": "8101########"
+  "additional": {
+    "phonenumber": "8101########",
+    "postfix": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ]
   }
 }

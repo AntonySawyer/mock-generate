@@ -2,24 +2,24 @@ console.time('Generate time');
 
 const fs = require('fs');
 
-const consoleOutput = true;
+const consoleOutput = false;
 
 const count = process.argv[2];
 const locale = process.argv[3];
 const typoCount = process.argv[4];
 let typoIndex = 1;
 
-const { address, name, phonenumber } = JSON.parse(fs.readFileSync(`./lib/locales/${locale}.json`, 'utf8'))
+const { address, name, additional } = JSON.parse(fs.readFileSync(`./lib/locales/${locale}.json`, 'utf8'))
 
 for (let i = 0; i < count; i++) {
-  const mock = [getName(name), getAddress(address), getPhoneNumber(phonenumber.pattern)];
+  const mock = [getName(name), getAddress(address), getPhoneNumber(additional.phonenumber)];
   if (typoCount != 0) {
       for (let i = 0; i < typoCount; i++) {
         const mockPart = getRandom(mock.length);
         mock[mockPart] = getTypo(mock[mockPart]);
       }
-  } 
-  consoleOutput && console.log(mock.join(' | '));
+  }
+  consoleOutput ? console.log(mock.join(' | ')) : fs.appendFileSync('./output.csv', `${mock.join('; ')}\n`, err => console.error(err));
 }
 
 function getTypo(str) {
@@ -64,9 +64,8 @@ function getAddress(obj) {
 
 function getPostfix() {
   const chars = ['-', '/', ' '];
-  const letters = locale === 'en' ? ['A', 'B', 'C', 'D', 'E'] : ['А', 'Б', 'В', 'Г', 'Д'];
   if (getRandom(2)) {
-    return `${chars[getRandom(2)]}${getRandom(2) ? letters[getRandom(5)] : getRandom(5, 1)}`;
+    return `${chars[getRandom(2)]}${getRandom(2) ? additional.postfix[getRandom(5)] : getRandom(5, 1)}`;
   }
 }
 
