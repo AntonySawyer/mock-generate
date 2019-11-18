@@ -1,38 +1,40 @@
-console.time('Generate time');
-
 const fs = require('fs');
 
+console.time('Generate time');
 const consoleOutput = false;
 
 const count = process.argv[2];
 const locale = process.argv[3];
 const typoCount = process.argv[4];
-let typoIndex = 1;
 
-const { address, name, additional } = JSON.parse(fs.readFileSync(`./lib/locales/${locale}.json`, 'utf8'))
+const result = [];
+let delState = 1; // To keep balace. +1: delete char, -1: paste char
+
+const {
+  address,
+  name,
+  additional
+} = JSON.parse(fs.readFileSync(`./lib/locales/${locale}.json`, 'utf8'));
 
 for (let i = 0; i < count; i++) {
   const mock = [getName(name), getAddress(address), getPhoneNumber(additional.phonenumber)];
   if (typoCount != 0) {
-      for (let i = 0; i < typoCount; i++) {
-        const mockPart = getRandom(mock.length);
-        mock[mockPart] = getTypo(mock[mockPart]);
-      }
+    for (let i = 0; i < typoCount; i++) {
+      const mockPart = getRandom(mock.length);
+      mock[mockPart] = getTypo(mock[mockPart]);
+    }
   }
-  consoleOutput ? console.log(mock.join(' | ')) : fs.appendFileSync('./output.csv', `${mock.join('; ')}\n`, err => console.error(err));
+  result.push(mock.join('| '));
 }
+consoleOutput ? result.forEach(el => console.log(el)) : fs.appendFileSync('./output.csv', result.join('\n'), err => console.error(err));
 
 function getTypo(str) {
-  const missingIndex = getRandom(str.length-2, 1);
-  switch (typoIndex) {
-    case 1:
-      typoIndex = 2;
-      return `${str.slice(0, missingIndex)}${str.slice(missingIndex+1)}`;
-    case 2:
-      typoIndex = 3;
-      return `${str.slice(0, missingIndex)}${str.slice(missingIndex-1)}`;
-    case 3:
-    typoIndex = 1;
+  const missingIndex = getRandom(str.length - 3, 1);
+  switch (getRandom(2)) {
+    case 0: // delete or paste char
+      delState *= -1;
+      return `${str.slice(0, missingIndex)}${str.slice(missingIndex + delState)}`;
+    case 1: // change order
       return `${str.slice(0, missingIndex)}${str[missingIndex+1]}${str[missingIndex]}${str.slice(missingIndex+2)}`;
     default:
       break;
@@ -74,7 +76,7 @@ function getPhoneNumber(pattern) {
 }
 
 function getRandom(max, min = 0) {
-  return Math.floor(Math.random() * Math.floor(max)) + min;
+  return Math.floor(Math.random() * max) + min;
 }
 
 console.timeEnd('Generate time');
