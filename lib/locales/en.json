@@ -1,69 +1,9 @@
 {
   "address": {
-    "country": [
-      "USA",
-      "United States",
-      "United States of America"
+    "build_num": [
+      "#"
     ],
-    "city": [
-      "Alabama",
-      "Alaska",
-      "Arizona",
-      "Arkansas",
-      "California",
-      "Colorado",
-      "Connecticut",
-      "Delaware",
-      "Florida",
-      "Georgia",
-      "Hawaii",
-      "Idaho",
-      "Illinois",
-      "Indiana",
-      "Iowa",
-      "Kansas",
-      "Kentucky",
-      "Louisiana",
-      "Maine",
-      "Maryland",
-      "Massachusetts",
-      "Michigan",
-      "Minnesota",
-      "Mississippi",
-      "Missouri",
-      "Montana",
-      "Nebraska",
-      "Nevada",
-      "New Hampshire",
-      "New Jersey",
-      "New Mexico",
-      "New York",
-      "North Carolina",
-      "North Dakota",
-      "Ohio",
-      "Oklahoma",
-      "Oregon",
-      "Pennsylvania",
-      "Rhode Island",
-      "South Carolina",
-      "South Dakota",
-      "Tennessee",
-      "Texas",
-      "Utah",
-      "Vermont",
-      "Virginia",
-      "Washington",
-      "West Virginia",
-      "Wisconsin",
-      "Wyoming"
-    ],
-    "prefix": [
-      "Avenue",
-      "Park",
-      "st.",
-      "Street"
-    ],
-    "name": [
+    "street_prefix": [
       "Redhold",
       "Treeflex",
       "Trippledex",
@@ -126,6 +66,58 @@
       "Zathin",
       "Duobam",
       "Keylex"
+    ],
+    "street_name": [
+      "Avenue",
+      "Ave",
+      "Road",
+      "Rd",
+      "Lane",
+      "Ln",
+      "Park",
+      "St",
+      "Street"
+    ],
+    "flat_prefix": [
+      "Apartment",
+      "Apt",
+      "apt"
+    ],
+    "flat_num": [
+      "#"
+    ],
+    "city": [
+      "Brooklyn, NY",
+      "Birmingham, Alabama",
+      "Huntsville, AL",
+      "Phoenix, Arizona",
+      "Little Rock, Arkansas",
+      "Sacramento, California",
+      "Los Angeles, California",
+      "Beverly Hills, CA",
+      "Denver, Colorado",
+      "Washington, DC",
+      "Miami, FL",
+      "Springfield, Illinois",
+      "Boston, Massachusetts",
+      "New York, NY",
+      "Santa Fe, New Mexico",
+      "Oxford, North Carolina",
+      "Walhalla, North Dakota",
+      "Portland, Oregon",
+      "Pittsburgh, PA",
+      "Nashville, TN",
+      "Austin, Texas",
+      "Altavista, Virginia",
+      "Beaver, West Virginia",
+      "Milwaukee, WI",
+      "Pinedale, WY",
+      "Logan, Utah"
+    ],
+    "country_prefix": [
+      "USA",
+      "United States",
+      "United States of America"
     ]
   },
   "name": {
@@ -3618,7 +3610,13 @@
     }
   },
   "additional": {
-    "phonenumber": "8101########",
+    "phonenumber": [
+      "8101212#####",
+      "8101232#####",
+      "8101312#####",
+      "8101281#####",
+      "8101415#####"
+    ],
     "postfix": [
       "A",
       "B",
